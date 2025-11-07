@@ -45,13 +45,32 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    
+    // Find user by email
     const user = await User.findOne({ email });
+    
+    // Check if user exists and password is correct
     if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      return res.status(401).json({ message: 'Invalid email or password' });
     }
+    
+    // Create token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-    res.json({ token, user });
+    
+    // Return user info without sensitive data
+    const userResponse = {
+      _id: user._id,
+      username: user.username,
+      email: user.email
+    };
+
+    res.json({
+      message: 'Login successful',
+      token,
+      user: userResponse
+    });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.error('Login error:', error);
+    res.status(400).json({ message: error.message });
   }
 };

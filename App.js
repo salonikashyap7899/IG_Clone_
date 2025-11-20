@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-// import { initializeApp } from 'firebase/app';
-// import { 
-//     getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged 
-// } from 'firebase/auth';
-// import { 
-//     getFirestore, doc, onSnapshot, collection, query, setDoc, updateDoc, 
-//     arrayUnion, arrayRemove, addDoc, serverTimestamp, getDoc, orderBy, 
-//     limit, where, getDocs 
-// } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+import { 
+    getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged 
+} from 'firebase/auth';
+import { 
+    getFirestore, doc, onSnapshot, collection, query, setDoc, updateDoc, 
+    arrayUnion, arrayRemove, addDoc, serverTimestamp, getDoc, orderBy, 
+    limit, where, getDocs 
+} from 'firebase/firestore';
 
 // --- Icon Imports (Inline SVG & Logos) ---
 
